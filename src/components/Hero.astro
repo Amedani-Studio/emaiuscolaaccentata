@@ -1,0 +1,56 @@
+---
+
+---
+
+<section class="hero">
+    <p>click to copy</p>
+  <div class="wrapper-title">
+    <h1 id="copy-target">È</h1>
+  </div>
+  <div id="feedback" class="feedback-message">Copied!</div>
+</section>
+
+<style lang="scss">
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100svh;
+  }
+
+  .wrapper-title {
+overflow: hidden;  }
+
+  #copy-target {
+    cursor: pointer;
+    font-size: 30vw;
+ 
+  }
+
+  .feedback-message {
+    display: none;
+
+    &.visible {
+      display: block;
+    }
+  }
+</style>
+<script>
+  const copyTarget = document.getElementById("copy-target") as any;
+  const feedbackMessage = document.getElementById("feedback") as any;
+
+  copyTarget.addEventListener("click", () => {
+    const textToCopy = copyTarget.textContent;
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        feedbackMessage.classList.add("visible");
+        setTimeout(() => {
+          feedbackMessage.classList.remove("visible");
+        }, 2000);
+      })
+      .catch((err) => {
+        console.error("Errore durante la copia negli appunti: ", err);
+      });
+  });
+</script>
