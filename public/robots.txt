@@ -3,7 +3,7 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 
-Sitemap: https://eaccentata.com/sitemap.xml
+Sitemap: https://emaiuscolaaccentata.org/sitemap.xml
 
 # Crawl delay per rispetto risorse server
 Crawl-delay: 1
