@@ -1,21 +1,89 @@
 ---
 import "../styles/global.scss";
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "È Maiuscola Accentata - Copia Facilmente",
+  description = "Strumento gratuito per copiare la E maiuscola accentata (È). Scopri come digitare È facilmente. Perfetto per documenti e scritti formali.",
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>E accentata</title>
+
+    <!-- SEO Essenziali -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="e maiuscola accentata, È, come digitare è, copia è accentata, scorciatoie tastiera"
+    />
+    <meta name="author" content="Amedani Studio" />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+    <link
+      rel="canonical"
+      href={`https://eaccentata.com${Astro.url.pathname}`}
+    />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content={`https://eaccentata.com${Astro.url.pathname}`}
+    />
+    <meta property="og:image" content="https://eaccentata.com/og-image.png" />
+    <meta property="og:locale" content="it_IT" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://eaccentata.com/og-image.png" />
+
+    <!-- Preconnect Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@900&family=Oswald:wght@700&family=Pacifico&family=Press+Start+2P&family=Roboto+Mono:wght@700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "È Maiuscola Accentata",
+        "description": "Strumento per copiare la E maiuscola accentata facilmente",
+        "url": "https://eaccentata.com",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web",
+        "creator": {
+          "@type": "Organization",
+          "name": "Amedani Studio",
+          "url": "https://amedani.studio"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        }
+      }
+    </script>
   </head>
   <body>
     <slot />
