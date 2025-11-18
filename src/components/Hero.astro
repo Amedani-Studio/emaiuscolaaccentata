@@ -3,11 +3,15 @@
 ---
 
 <section class="hero">
-    <p>click to copy</p>
-  <div class="wrapper-title">
-    <h1 id="copy-target">È</h1>
+  <div class="wrapper">
+    <!-- <p class="copy-target">click to copy</p> -->
+    <div class="wrapper-title">
+      <h1 class="copy-target title">
+        <span>È</span><span style="font-size: 21rem;">COPIA</span>
+      </h1>
+    </div>
+    <div id="feedback" class="feedback-message">Copied!</div>
   </div>
-  <div id="feedback" class="feedback-message">Copied!</div>
 </section>
 
 <style lang="scss">
@@ -18,16 +22,44 @@
     height: 100svh;
   }
 
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .wrapper-title {
-overflow: hidden;  }
+    overflow: hidden;
+    height: 25rem;
+    line-height: 1.15;
+    &:hover {
+      .title span {
+        transform: translateY(-110%);
+      }
+    }
+  }
 
-  #copy-target {
+  .copy-target {
     cursor: pointer;
-    font-size: 30vw;
- 
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    font-size: 25rem;
+    text-align: center;
+
+    span {
+      transition: transform 0.6s;
+      width: 100vw;
+  
+    }
   }
 
   .feedback-message {
+    position: absolute;
+    bottom: 6rem;
+    left: 50%;
+    transform: translateX(-50%);
     display: none;
 
     &.visible {
@@ -36,21 +68,23 @@ overflow: hidden;  }
   }
 </style>
 <script>
-  const copyTarget = document.getElementById("copy-target") as any;
+  const copyTargets = document.querySelectorAll(".copy-target") as any;
   const feedbackMessage = document.getElementById("feedback") as any;
 
-  copyTarget.addEventListener("click", () => {
-    const textToCopy = copyTarget.textContent;
-    navigator.clipboard
-      .writeText(textToCopy)
-      .then(() => {
-        feedbackMessage.classList.add("visible");
-        setTimeout(() => {
-          feedbackMessage.classList.remove("visible");
-        }, 2000);
-      })
-      .catch((err) => {
-        console.error("Errore durante la copia negli appunti: ", err);
-      });
+  copyTargets.forEach((copyTarget: any) => {
+    copyTarget.addEventListener("click", () => {
+      const textToCopy = copyTarget.textContent;
+      navigator.clipboard
+        .writeText(textToCopy)
+        .then(() => {
+          feedbackMessage.classList.add("visible");
+          setTimeout(() => {
+            feedbackMessage.classList.remove("visible");
+          }, 2000);
+        })
+        .catch((err) => {
+          console.error("Errore durante la copia negli appunti: ", err);
+        });
+    });
   });
 </script>
