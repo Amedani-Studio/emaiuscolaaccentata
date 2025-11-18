@@ -3,18 +3,48 @@
 ---
 
 <section class="hero">
-  <div class="wrapper">
-    <!-- <p class="copy-target">click to copy</p> -->
-    <div class="wrapper-title">
-      <h1 class="copy-target title">
-        <span>È</span><span style="font-size: 21rem;">COPIA</span>
-      </h1>
+  <div class="container">
+    <div class="box-card copy-target">
+      <div class="face front">È</div>
+      <div class="face back">È</div>
+      <div class="face right">È</div>
+      <div class="face left">È</div>
+      <div class="face top">È</div>
+      <div class="face bottom">È</div>
     </div>
-    <div id="feedback" class="feedback-message">Copied!</div>
   </div>
+  <!-- <div id="feedback" class="feedback-message">Copiato!</div> -->
+
+  <a href="" target="_blank" class="box-open-source">
+    <span
+      >È un progetto open source di Amedani Studio, sviluppato da Giulio Barkee</span
+    >
+  </a>
+
+  <div class="click-prompt">click box to copy</div>
 </section>
 
 <style lang="scss">
+  .click-prompt {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    font-size: 2rem;
+    transition: color 0.3s ease;
+    display: none;
+  }
+  .box-open-source {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    display: none;
+
+    span {
+      font-size: 2rem;
+      color: black;
+      cursor: pointer;
+    }
+  }
   .hero {
     display: flex;
     align-items: center;
@@ -22,36 +52,180 @@
     height: 100svh;
   }
 
-  .wrapper {
+  .container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    transform-style: preserve-3d;
   }
-  .wrapper-title {
+
+  .box-card {
+    width: 25vw;
+    height: 25vw;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+    cursor: pointer;
+    animation: rotate3d 8s infinite linear;
+  }
+
+  .box-card:hover {
+    animation: none;
+  }
+
+  .face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10vw;
+    font-weight: bold;
+    backface-visibility: visible;
+    border-radius: 12px;
+    background: linear-gradient(145deg, white, #383838);
+    border: 2px solid #646cff;
+    transition: all 0.3s ease;
     overflow: hidden;
-    height: 25rem;
-    line-height: 1.15;
-    &:hover {
-      .title span {
-        transform: translateY(-110%);
-      }
+  }
+
+  .face::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    top: -100%;
+    left: -100%;
+    transition: all 0.5s ease;
+    transform: translateZ(20px);
+  }
+
+  .face::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .face:hover::before {
+    top: 100%;
+    left: 100%;
+  }
+
+  .face:hover::after {
+    opacity: 1;
+  }
+
+  .front {
+    transform: translateZ(100px);
+    border-color: #646cff;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .back {
+    transform: translateZ(-100px) rotateY(180deg);
+    border-color: #00bcd4;
+    font-family: "Lobster", cursive;
+  }
+
+  .right {
+    transform: translateX(100px) rotateY(90deg);
+    font-family: "Roboto Mono", monospace;
+  }
+
+  .left {
+    transform: translateX(-100px) rotateY(-90deg);
+    border-color: #ff4081;
+    font-family: "Oswald", sans-serif;
+  }
+
+  .top {
+    transform: translateY(-100px) rotateX(90deg);
+    border-color: #ffc107;
+    font-family: "Pacifico", cursive;
+    font-size: 8vw;
+  }
+
+  .bottom {
+    transform: translateY(100px) rotateX(-90deg);
+    border-color: #9c27b0;
+    font-family: "Press Start 2P", cursive;
+  }
+
+  @keyframes rotate3d {
+    0% {
+      transform: rotateX(0) rotateY(0);
+    }
+    25% {
+      transform: rotateX(90deg) rotateY(90deg);
+    }
+    50% {
+      transform: rotateX(180deg) rotateY(180deg);
+    }
+    75% {
+      transform: rotateX(270deg) rotateY(270deg);
+    }
+    100% {
+      transform: rotateX(360deg) rotateY(360deg);
     }
   }
 
-  .copy-target {
-    cursor: pointer;
-  }
+  @media (max-width: 768px) {
+    .click-prompt {
+      display: block;
+    }
+    .box-card {
+      width: 70vw;
+      height: 70vw;
+      margin-bottom: 8rem;
+    }
 
-  .title {
-    display: flex;
-    flex-direction: column;
-    font-size: 25rem;
-    text-align: center;
+    .box-open-source {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      left: 1rem;
 
-    span {
-      transition: transform 0.6s;
-      width: 100vw;
-  
+      span {
+        font-size: 2rem;
+      }
+    }
+
+    .face {
+      font-size: 20vw;
+    }
+
+    .front {
+      transform: translateZ(75px);
+    }
+    .back {
+      transform: translateZ(-75px) rotateY(180deg);
+    }
+    .right {
+      transform: translateX(75px) rotateY(90deg);
+    }
+    .left {
+      transform: translateX(-75px) rotateY(-90deg);
+    }
+    .top {
+      transform: translateY(-75px) rotateX(90deg);
+    }
+    .bottom {
+      transform: translateY(75px) rotateX(-90deg);
     }
   }
 
@@ -68,23 +242,41 @@
   }
 </style>
 <script>
-  const copyTargets = document.querySelectorAll(".copy-target") as any;
+  const copyTarget = document.querySelector(".copy-target") as any;
   const feedbackMessage = document.getElementById("feedback") as any;
+  const box = document.querySelector(".box-card") as any;
+  const front = document.querySelector(".front") as any;
+  const openSource = document.querySelector(".box-open-source") as any;
+  const clickPrompt = document.querySelector(".click-prompt") as any;
 
-  copyTargets.forEach((copyTarget: any) => {
-    copyTarget.addEventListener("click", () => {
-      const textToCopy = copyTarget.textContent;
-      navigator.clipboard
-        .writeText(textToCopy)
-        .then(() => {
-          feedbackMessage.classList.add("visible");
-          setTimeout(() => {
-            feedbackMessage.classList.remove("visible");
-          }, 2000);
-        })
-        .catch((err) => {
-          console.error("Errore durante la copia negli appunti: ", err);
-        });
-    });
+  box.addEventListener("mouseover", () => {
+    front.textContent = "COPIAMI";
+    front.style.setProperty("font-size", "5vw");
+  });
+
+  box.addEventListener("mouseout", () => {
+    front.textContent = "È";
+    front.style.setProperty("font-size", "10vw");
+  });
+
+  box.addEventListener("click", () => {
+    front.textContent = "COPIATO";
+    openSource.style.setProperty("display", "block");
+    clickPrompt.style.setProperty("display", "none");
+  });
+
+  copyTarget.addEventListener("click", () => {
+    const textToCopy = copyTarget.textContent;
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        feedbackMessage.classList.add("visible");
+        setTimeout(() => {
+          feedbackMessage.classList.remove("visible");
+        }, 2000);
+      })
+      .catch((err) => {
+        console.error("Errore durante la copia negli appunti: ", err);
+      });
   });
 </script>
