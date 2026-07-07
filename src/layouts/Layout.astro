@@ -33,7 +33,7 @@ const {
     />
     <link
       rel="canonical"
-      href={`https://emaiuscolaacentata.org${Astro.url.pathname}`}
+      href={`https://emaiuscolaaccentata.org${Astro.url.pathname}`}
     />
 
     <!-- Open Graph / Social -->
@@ -57,7 +57,7 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@900&family=Oswald:wght@700&family=Pacifico&family=Press+Start+2P&family=Roboto+Mono:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
 
@@ -81,6 +81,39 @@ const {
           "price": "0",
           "priceCurrency": "EUR"
         }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Come si fa la È maiuscola accentata sulla tastiera?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Su Windows, puoi fare la È maiuscola accentata tenendo premuto il tasto Alt e digitando 212 sul tastierino numerico. Su Mac, puoi premere Option + E, poi rilasciare e premere Shift + E. In alternativa, puoi copiare il carattere È con un solo clic su questo sito."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qual è il codice ASCII per la È maiuscola accentata?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il codice ASCII per la È maiuscola accentata è 212. Si digita tenendo premuto il tasto Alt ed inserendo la sequenza numerica 212 sul tastierino numerico."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Come fare la È maiuscola accentata senza tastierino numerico?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Se non disponi di un tastierino numerico su Windows, puoi copiare la È direttamente con un clic su questo sito, oppure cercare la Mappa Caratteri integrata di Windows, selezionare la È maiuscola e cliccare su copia."
+            }
+          }
+        ]
       }
     </script>
   </head>

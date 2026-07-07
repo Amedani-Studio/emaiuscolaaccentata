@@ -1,277 +1,824 @@
 ---
 
+const charToCopy = "È";
+const creditsText = "Credits";
+const creditsUrl = "https://amedani.com";
+const plusSymbol = "+";
+const marqueeText = "COPIAMI";
+
+const eGiantTitle = `Clicca per copiare ${charToCopy}`;
+const eGiantAriaLabel = `Carattere ${charToCopy}`;
+const menuOptionsLabel = "Menu opzioni";
+const closeMenuLabel = "Chiudi menu";
+
+const panelTitle = "COME DIGITARE LA<br />È MAIUSCOLA:<br />GUIDA COMPLETA";
+const panelCopyLabel = "Clicca qui per copiare";
+const panelParagraph1 =
+  "La È maiuscola accentata è un carattere che molte persone trovano difficile digitare, soprattutto perché non ha un tasto dedicato sulla maggior parte delle tastiere. Mentre la è minuscola è facilmente accessibile tramite un tasto specifico sulla tastiera italiana, la È maiuscola accentata non ha lo stesso trattamento. Questo può risultare scomodo quando si deve scrivere in modo formale o si sta cercando di rispettare le regole grammaticali corrette. Tuttavia, grazie alla varietà di metodi che esistono, digitare la È maiuscola accentata non è mai stato così semplice. In questa guida completa esploreremo tutte le opzioni disponibili su Windows, Mac e Linux, oltre a un metodo alternativo che può rivelarsi molto utile per chi lavora anche su mobile.";
+
+const panelHeadingSec1 =
+  "Perché la È maiuscola accentata è difficile da digitare?";
+const panelParagraph2 =
+  "La difficoltà nasce dal fatto che, mentre la è minuscola è un carattere comune nella lingua italiana e ha un tasto dedicato sulla maggior parte delle tastiere italiane, la È maiuscola accentata è meno frequentemente utilizzata. Di conseguenza, le tastiere non prevedono un tasto specifico per questa lettera, lasciando gli utenti a dover ricorrere a metodi alternativi per inserirla. Questo è un problema che si verifica più di frequente quando si scrivono documenti formali, email professionali, o quando si usano lettere maiuscole in un titolo o a inizio frase. Tuttavia, fortunatamente ci sono vari metodi per digitare rapidamente la È maiuscola accentata senza troppi problemi.";
+
+const panelHeadingSec2 =
+  "Metodo 1: Come digitare la È maiuscola accentata su Windows";
+const panelParagraph3 =
+  "Su Windows, uno dei metodi più veloci e affidabili per digitare la È maiuscola accentata è attraverso l’uso del tasto Alt e un codice ASCII. Questo metodo è particolarmente utile per chi ha una tastiera con il tastierino numerico, in quanto funziona solo con il tastierino numerico, non con i numeri situati sopra le lettere sulla tastiera principale.";
+
+const panelHeadingTert1 = "Passi da seguire:";
+const panelStep1 = "Tieni premuto il tasto Alt sulla tastiera.";
+const panelStep2 =
+  "Usa il tastierino numerico per digitare 212 (il codice ASCII per la È maiuscola accentata).";
+const panelStep3 = "Rilascia il tasto Alt.";
+
+const panelParagraph4 =
+  "In questo modo, il carattere È apparirà immediatamente nel punto in cui si trova il cursore. Questo metodo è veloce, soprattutto se sei già familiare con il codice ASCII, ma richiede una tastiera con il tastierino numerico. Se non hai il tastierino numerico, puoi provare altre soluzioni più adatte.";
+
+const panelHeadingSec3 =
+  "Metodo 2: Come digitare la È maiuscola accentata su Mac";
+const panelParagraph5 =
+  "Se sei un utente Mac, c’è un metodo molto semplice per ottenere la È maiuscola accentata grazie a una combinazione di tasti. A differenza di Windows, che richiede l’uso di un codice, Mac rota una combinazione di tasti molto intuitiva, rendendo più facile l’accesso al carattere.";
 ---
 
-<section class="hero">
-  <div class="container">
-    <div class="box-card copy-target">
-      <div class="face front">È</div>
-      <div class="face back">È</div>
-      <div class="face right">È</div>
-      <div class="face left">È</div>
-      <div class="face top">È</div>
-      <div class="face bottom">È</div>
+<section class="hero" id="hero-section">
+
+  <div class="e-hover-wrapper">
+
+    <div class="giant-e-container" id="e-container">
+      <svg
+        viewBox="0 0 339 839"
+        class="giant-e-svg"
+        id="copy-e"
+        data-char={charToCopy}
+        role="img"
+        aria-label={eGiantAriaLabel}
+      >
+        <title>{eGiantTitle}</title>
+        <path
+          d="M82.264 275.141V486.023H311.88V553.903H82.264V771.12H339V839H0V207.261H339V275.141H82.264ZM248.6 113.134V174.679L56.048 71.5005V0L248.6 113.134Z"
+          fill="currentColor"></path>
+      </svg>
+    </div>
+
+    <div class="marquee-container" id="marquee-container">
+      <div class="marquee-inner">
+        <div class="marquee-group">
+          <span>{marqueeText}</span>
+          <span>{marqueeText}</span>
+          <span>{marqueeText}</span>
+        </div>
+        <div class="marquee-group" aria-hidden="true">
+          <span>{marqueeText}</span>
+          <span>{marqueeText}</span>
+          <span>{marqueeText}</span>
+        </div>
+      </div>
     </div>
   </div>
-  <!-- <div id="feedback" class="feedback-message">Copiato!</div> -->
 
-  <a href="" target="_blank" class="box-open-source">
-    <span
-      >È un progetto open source di Amedani Studio, sviluppato da Giulio Barkee</span
-    >
+  <a
+    href={creditsUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="credits-link"
+  >
+    {creditsText}
   </a>
 
-  <div class="click-prompt">click box to copy</div>
+  <button class="plus-button" aria-label={menuOptionsLabel} id="plus-btn">
+    {plusSymbol}
+  </button>
+
+  <div class="plus-panel" id="plus-panel">
+
+    <div class="panel-content">
+      <div class="panel-grid">
+        <div class="panel-title-wrapper">
+          <h1 class="panel-title" set:html={panelTitle} />
+        </div>
+
+        <div class="panel-right-wrapper">
+          <div
+            class="panel-copy-box"
+            id="panel-copy-box"
+            data-char={charToCopy}
+          >
+            <span class="panel-copy-label">{panelCopyLabel}</span>
+            <span class="panel-copy-char">{charToCopy}</span>
+          </div>
+        </div>
+
+        <div class="panel-paragraphs-wrapper">
+          <p class="panel-paragraph">{panelParagraph1}</p>
+
+          <h3 class="panel-heading-secondary">{panelHeadingSec1}</h3>
+
+          <p class="panel-paragraph">{panelParagraph2}</p>
+
+          <h3 class="panel-heading-secondary">{panelHeadingSec2}</h3>
+
+          <p class="panel-paragraph">{panelParagraph3}</p>
+
+          <h4 class="panel-heading-tertiary">{panelHeadingTert1}</h4>
+
+          <ol class="panel-list">
+            <li class="panel-list-item">{panelStep1}</li>
+            <li class="panel-list-item">{panelStep2}</li>
+            <li class="panel-list-item">{panelStep3}</li>
+          </ol>
+
+          <p class="panel-paragraph">{panelParagraph4}</p>
+
+          <h3 class="panel-heading-secondary">{panelHeadingSec3}</h3>
+
+          <p class="panel-paragraph">{panelParagraph5}</p>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="panel-toggle-btn"
+      aria-label={closeMenuLabel}
+      id="panel-toggle-btn"
+    >
+      <span class="plus-icon">{plusSymbol}</span>
+    </button>
+  </div>
 </section>
 
 <style lang="scss">
-  .click-prompt {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    font-size: 2rem;
-    transition: color 0.3s ease;
-    display: none;
-  }
-  .box-open-source {
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
-    display: none;
-
-    span {
-      font-size: 2rem;
-      color: black;
-      cursor: pointer;
-    }
-  }
   .hero {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     height: 100svh;
-  }
-
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform-style: preserve-3d;
-  }
-
-  .box-card {
-    width: 25vw;
-    height: 25vw;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 1s ease;
-    cursor: pointer;
-    animation: rotate3d 8s infinite linear;
-  }
-
-  .box-card:hover {
-    animation: none;
-  }
-
-  .face {
-    position: absolute;
     width: 100%;
-    height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 10vw;
-    font-weight: bold;
-    backface-visibility: visible;
-    border-radius: 12px;
-    background: linear-gradient(145deg, #00c5df, #ee46d3);
-    border: 2px solid#907cff;
-    transition: all 0.3s ease;
+    justify-content: flex-start;
+    position: relative;
+    background-color: #ffffff;
+    padding-inline: 40px;
+    padding-block: 30px;
+    box-sizing: border-box;
     overflow: hidden;
   }
 
-  .face::before {
-    content: "";
-    position: absolute;
-    width: 100%;
+  .giant-e-container {
+    height: calc(100svh - 60px);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: visible;
+    transition: opacity 0.2s ease;
+    z-index: 2;
+  }
+
+  .giant-e-svg {
     height: 100%;
-    background: linear-gradient(
-      45deg,
-      transparent,
-      rgba(255, 255, 255, 0.1),
-      transparent
-    );
-    top: -100%;
-    left: -100%;
-    transition: all 0.5s ease;
-    transform: translateZ(20px);
+    max-width: 70vw;
+    width: auto;
+    display: block;
+    fill: #000000;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 
-  .face::after {
-    content: "";
+  .marquee-container {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      135deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.05) 50%,
-      transparent 100%
-    );
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 10;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    line-height: 0.8;
+    cursor: pointer;
   }
 
-  .face:hover::before {
-    top: 100%;
-    left: 100%;
+  .marquee-inner {
+    display: flex;
+    width: max-content;
+    animation: marquee-loop 30s linear infinite;
   }
 
-  .face:hover::after {
-    opacity: 1;
+  .marquee-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 4rem;
+    padding-right: 4rem;
+
+    span {
+      font-family:
+        "Inter",
+        system-ui,
+        -apple-system,
+        sans-serif;
+      font-size: min(90vh, 70vw);
+      font-weight: 600;
+      letter-spacing: -0.07em;
+      color: #000000;
+      text-transform: uppercase;
+      white-space: nowrap;
+      user-select: none;
+      transform: translateY(
+        0.025em
+      );
+    }
   }
 
-  .front {
-    transform: translateZ(100px);
-    font-family: "Montserrat", sans-serif;
-  }
-
-  .back {
-    transform: translateZ(-100px) rotateY(180deg);
-    font-family: "Lobster", cursive;
-  }
-
-  .right {
-    transform: translateX(100px) rotateY(90deg);
-    font-family: "Roboto Mono", monospace;
-  }
-
-  .left {
-    transform: translateX(-100px) rotateY(-90deg);
-    font-family: "Oswald", sans-serif;
-  }
-
-  .top {
-    transform: translateY(-100px) rotateX(90deg);
-    font-family: "Pacifico", cursive;
-    font-size: 8vw;
-  }
-
-  .bottom {
-    transform: translateY(100px) rotateX(-90deg);
-    font-family: "Press Start 2P", cursive;
-  }
-
-  @keyframes rotate3d {
+  @keyframes marquee-loop {
     0% {
-      transform: rotateX(0) rotateY(0);
-    }
-    25% {
-      transform: rotateX(90deg) rotateY(90deg);
-    }
-    50% {
-      transform: rotateX(180deg) rotateY(180deg);
-    }
-    75% {
-      transform: rotateX(270deg) rotateY(270deg);
+      transform: translate3d(0, 0, 0);
     }
     100% {
-      transform: rotateX(360deg) rotateY(360deg);
+      transform: translate3d(-50%, 0, 0);
     }
   }
 
-  @media (max-width: 768px) {
-    .click-prompt {
-      display: block;
+  .hero.show-marquee {
+    .giant-e-container {
+      opacity: 0;
+      pointer-events: none;
     }
-    .box-card {
-      width: 70vw;
-      height: 70vw;
-      margin-bottom: 8rem;
+    .marquee-container {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  @media (hover: hover) {
+    .e-hover-wrapper:hover {
+      .giant-e-container {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .marquee-container {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+  }
+
+  .e-hover-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: calc(100svh - 60px);
+    z-index: 2;
+
+    &:hover {
+      z-index: 21;
+    }
+  }
+
+  .credits-link {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    z-index: 50;
+
+    &:hover {
+      color: #000000;
+    }
+  }
+
+  .plus-button {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    width: 78px;
+    height: 78px;
+    background-color: rgba(237, 237, 237, 1);
+    border: none;
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #000000;
+    cursor: pointer;
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #e5e5e5;
     }
 
-    .box-open-source {
-      position: absolute;
-      bottom: 1rem;
-      right: 1rem;
-      left: 1rem;
+    &:active {
+      background-color: #dcdcdc;
+    }
+  }
 
-      span {
-        font-size: 2rem;
+  @media (max-width: 480px) {
+    .credits-link {
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+
+    .plus-button {
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  .plus-panel {
+    position: absolute;
+    z-index: 20;
+    background-color: rgba(237, 237, 237, 1);
+    overflow: hidden;
+    box-sizing: border-box;
+
+    top: calc(100% - 30px - 84px);
+    left: calc(100% - 40px - 84px);
+    width: 84px;
+    height: 84px;
+
+    transition:
+      top 1.2s cubic-bezier(0.25, 1, 0.25, 1),
+      left 1.2s cubic-bezier(0.25, 1, 0.25, 1),
+      width 1.2s cubic-bezier(0.25, 1, 0.25, 1),
+      height 1.2s cubic-bezier(0.25, 1, 0.25, 1);
+
+    &.is-expanded {
+      z-index: 40;
+      top: 30px;
+      left: 40px;
+      width: calc(100% - 80px);
+      height: calc(100% - 60px);
+    }
+  }
+
+  .panel-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    visibility: hidden;
+    pointer-events: none;
+    transition: visibility 0s ease 0s;
+    overflow-y: auto;
+    padding-bottom: 120px;
+    background-color: rgba(224, 224, 224, 1);
+  }
+
+  .plus-panel.is-expanded {
+    .panel-content {
+      visibility: visible;
+      pointer-events: auto;
+      transition: visibility 0s ease 1.2s;
+    }
+
+    .panel-toggle-btn {
+      .plus-icon {
+        transform: translate(-50%, -50%) rotate(45deg);
       }
     }
 
-    .face {
-      font-size: 20vw;
+    .panel-title,
+    .panel-paragraph,
+    .panel-heading-secondary,
+    .panel-heading-tertiary,
+    .panel-list {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s,
+        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s;
     }
 
-    .front {
-      transform: translateZ(75px);
-    }
-    .back {
-      transform: translateZ(-75px) rotateY(180deg);
-    }
-    .right {
-      transform: translateX(75px) rotateY(90deg);
-    }
-    .left {
-      transform: translateX(-75px) rotateY(-90deg);
-    }
-    .top {
-      transform: translateY(-75px) rotateX(90deg);
-    }
-    .bottom {
-      transform: translateY(75px) rotateX(-90deg);
+    .panel-copy-box {
+      transform: translateY(0);
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s;
     }
   }
 
-  .feedback-message {
-    position: absolute;
-    bottom: 6rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;
+  .panel-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
 
-    &.visible {
-      display: block;
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+
+  .panel-title-wrapper {
+    grid-column: 1;
+  }
+
+  .panel-title {
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-size: clamp(1.8rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 0.9;
+
+    color: #000000;
+    margin: 0;
+    text-transform: uppercase;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0s ease 0s,
+      transform 0s ease 0s;
+  }
+
+  .panel-right-wrapper {
+    grid-column: 2;
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+    padding: 15px;
+    margin: -15px;
+
+    @media (max-width: 900px) {
+      grid-column: 1;
+      justify-content: flex-start;
+      order: -1;
+    }
+  }
+
+  .panel-copy-box {
+    background-color: rgba(237, 237, 237, 1);
+    width: 320px;
+    height: 210px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    user-select: none;
+
+    transform: translateY(110%);
+    transition: transform 0s ease 0s;
+
+    @media (max-width: 900px) {
+      width: 100%;
+      height: 200px;
+    }
+
+    &:hover {
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .panel-copy-label {
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000000;
+    text-align: right;
+    display: block;
+  }
+
+  .panel-copy-char {
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-size: 130px;
+    font-weight: 400;
+    color: #000000;
+    line-height: 1;
+    margin-top: auto;
+    display: block;
+    transform: translate(-10px, 20px);
+
+    @media (max-width: 900px) {
+      font-size: 100px;
+    }
+  }
+
+  .panel-paragraphs-wrapper {
+    grid-column: 1 / span 2;
+
+    @media (max-width: 900px) {
+      grid-column: 1;
+    }
+  }
+
+  .panel-paragraph {
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-size: 20px;
+    line-height: 1.2;
+    color: rgba(0, 0, 0, 1);
+    text-align: justify;
+
+    font-weight: 400;
+    max-width: 100%;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0s ease 0s,
+      transform 0s ease 0s;
+  }
+
+  .panel-heading-secondary {
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0s ease 0s,
+      transform 0s ease 0s;
+
+    &.font-weight-normal {
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+  }
+
+  .panel-heading-tertiary {
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+    margin-top: 24px;
+    margin-bottom: 12px;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0s ease 0s,
+      transform 0s ease 0s;
+  }
+
+  .panel-list {
+    margin-left: 20px;
+    margin-bottom: 24px;
+    list-style-type: decimal;
+    font-size: 20px !important;
+    line-height: 1.2 !important;
+    color: rgba(0, 0, 0, 1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0s ease 0s,
+      transform 0s ease 0s;
+  }
+
+  .panel-list-item {
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 8px;
+  }
+
+  .panel-toggle-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 84px;
+    height: 84px;
+    background-color: rgba(224, 224, 224, 1);
+    border: none;
+    border-top: 6px solid #ffffff;
+    border-left: 6px solid #ffffff;
+    cursor: pointer;
+    z-index: 25;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #e5e5e5;
+    }
+
+    &:active {
+      background-color: rgba(224, 224, 224, 1);
+    }
+
+    .plus-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(0deg);
+      font-family:
+        "Inter",
+        system-ui,
+        -apple-system,
+        sans-serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: #000000;
+      line-height: 1;
+      transition: transform 1.2s cubic-bezier(0.25, 1, 0.25, 1);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .plus-panel {
+      top: calc(100% - 1.5rem - 3rem - 4px);
+      left: calc(100% - 1.5rem - 3rem - 4px);
+      width: calc(3rem + 4px);
+      height: calc(3rem + 4px);
+
+      &.is-expanded {
+        top: 1.5rem;
+        left: 1.5rem;
+        width: calc(100% - 3rem);
+        height: calc(100% - 3rem);
+      }
+    }
+
+    .panel-content {
+      padding: 30px 20px;
+      padding-bottom: 90px;
+    }
+
+    .panel-toggle-btn {
+      width: calc(3rem + 4px);
+      height: calc(3rem + 4px);
+      border-top: 4px solid #ffffff;
+      border-left: 4px solid #ffffff;
+
+      .plus-icon {
+        font-size: 1.5rem;
+      }
     }
   }
 </style>
+
 <script>
-  const copyTarget = document.querySelector(".copy-target") as any;
-  const feedbackMessage = document.getElementById("feedback") as any;
-  const box = document.querySelector(".box-card") as any;
-  const front = document.querySelector(".front") as any;
-  const openSource = document.querySelector(".box-open-source") as any;
-  const clickPrompt = document.querySelector(".click-prompt") as any;
+  const copyBtn = document.getElementById("copy-e");
+  const heroSection = document.getElementById("hero-section");
+  const marqueeContainer = document.getElementById("marquee-container");
 
-  box.addEventListener("mouseover", () => {
-    front.textContent = "COPIAMI";
-    front.style.setProperty("font-size", "5vw");
-  });
+  const performCopy = async () => {
+    const textToCopy = copyBtn?.getAttribute("data-char") || "È";
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+    } catch (err) {
+      console.error("Errore durante la copia negli appunti: ", err);
+    }
+  };
 
-  box.addEventListener("mouseout", () => {
-    front.textContent = "È";
-    front.style.setProperty("font-size", "10vw");
-  });
+  if (copyBtn && heroSection) {
 
-  box.addEventListener("click", () => {
-    front.textContent = "COPIATO";
-    openSource.style.setProperty("display", "block");
-    clickPrompt.style.setProperty("display", "none");
-  });
+    copyBtn.addEventListener("click", async () => {
+      await performCopy();
 
-  copyTarget.addEventListener("click", () => {
-    const textToCopy = "È";
-    navigator.clipboard
-      .writeText(textToCopy)
-      .then(() => {
-        feedbackMessage.classList.add("visible");
-        setTimeout(() => {
-          feedbackMessage.classList.remove("visible");
-        }, 2000);
-      })
-      .catch((err) => {
+      heroSection.classList.add("show-marquee");
+      setTimeout(() => {
+        heroSection.classList.remove("show-marquee");
+      }, 2500);
+    });
+  }
+
+  if (marqueeContainer && heroSection) {
+    marqueeContainer.addEventListener("click", async () => {
+      await performCopy();
+
+      heroSection.classList.add("show-marquee");
+      setTimeout(() => {
+        heroSection.classList.remove("show-marquee");
+      }, 2500);
+    });
+  }
+
+  const plusPanel = document.getElementById("plus-panel");
+  const panelToggleBtn = document.getElementById("panel-toggle-btn");
+  const plusBtn = document.getElementById("plus-btn");
+  const panelCopyBox = document.getElementById("panel-copy-box");
+
+  if (panelCopyBox) {
+    panelCopyBox.addEventListener("click", async (e) => {
+      e.stopPropagation();
+      const textToCopy = panelCopyBox.getAttribute("data-char") || "È";
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        const label = panelCopyBox.querySelector(".panel-copy-label");
+        if (label) {
+          const originalText = label.textContent;
+          label.textContent = "Copiato!";
+          (label as HTMLElement).style.color = "#00aa00";
+          setTimeout(() => {
+            label.textContent = originalText;
+            (label as HTMLElement).style.color = "";
+          }, 1500);
+        }
+      } catch (err) {
         console.error("Errore durante la copia negli appunti: ", err);
-      });
+      }
+    });
+  }
+
+  let isHoverDisabled = false;
+
+  if (plusPanel) {
+
+    plusPanel.addEventListener("mouseenter", () => {
+      if (!isHoverDisabled) {
+        plusPanel.classList.add("is-expanded");
+      }
+    });
+
+    plusPanel.addEventListener("mouseleave", () => {
+      plusPanel.classList.remove("is-expanded");
+      isHoverDisabled = false;
+    });
+  }
+
+  if (panelToggleBtn && plusPanel) {
+    panelToggleBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (plusPanel.classList.contains("is-expanded")) {
+        plusPanel.classList.remove("is-expanded");
+        isHoverDisabled = true;
+      } else {
+        plusPanel.classList.add("is-expanded");
+      }
+    });
+  }
+
+  if (plusBtn && plusPanel) {
+    plusBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      plusPanel.classList.add("is-expanded");
+    });
+  }
+
+  document.addEventListener("click", (e) => {
+    if (
+      plusPanel &&
+      plusPanel.classList.contains("is-expanded") &&
+      !plusPanel.contains(e.target as Node)
+    ) {
+      plusPanel.classList.remove("is-expanded");
+    }
   });
 </script>
