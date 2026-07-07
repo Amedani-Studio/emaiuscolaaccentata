@@ -244,6 +244,9 @@ const panelParagraph5 =
       opacity: 1;
       pointer-events: auto;
     }
+    .e-hover-wrapper {
+      z-index: 21;
+    }
   }
 
   @media (hover: hover) {
@@ -329,25 +332,25 @@ const panelParagraph5 =
 
   @media (max-width: 480px) {
     .hero {
-      padding: 1.5rem;
+      padding: 10px;
     }
 
     .giant-e-container {
-      height: calc(100svh - 3rem);
+      height: calc(100svh - 20px);
     }
 
     .marquee-container {
-      bottom: 1.5rem;
+      bottom: 10px;
     }
 
     .credits-link {
-      top: 1.5rem;
-      right: 1.5rem;
+      top: 10px;
+      right: 10px;
     }
 
     .plus-button {
-      bottom: 1.5rem;
-      right: 1.5rem;
+      bottom: 10px;
+      right: 10px;
       width: 3rem;
       height: 3rem;
       font-size: 1.5rem;
@@ -687,21 +690,21 @@ const panelParagraph5 =
 
   @media (max-width: 480px) {
     .plus-panel {
-      top: calc(100% - 1.5rem - 3rem - 4px);
-      left: calc(100% - 1.5rem - 3rem - 4px);
+      top: calc(100% - 10px - 3rem - 4px);
+      left: calc(100% - 10px - 3rem - 4px);
       width: calc(3rem + 4px);
       height: calc(3rem + 4px);
 
       &.is-expanded {
-        top: 1.5rem;
-        left: 1.5rem;
-        width: calc(100% - 3rem);
-        height: calc(100% - 3rem);
+        top: 10px;
+        left: 10px;
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
       }
     }
 
     .panel-content {
-      padding: 30px 20px;
+      padding: 20px 10px;
       padding-bottom: 90px;
     }
 
@@ -735,22 +738,14 @@ const panelParagraph5 =
   if (copyBtn && heroSection) {
     copyBtn.addEventListener("click", async () => {
       await performCopy();
-
       heroSection.classList.add("show-marquee");
-      setTimeout(() => {
-        heroSection.classList.remove("show-marquee");
-      }, 2500);
     });
   }
 
   if (marqueeContainer && heroSection) {
     marqueeContainer.addEventListener("click", async () => {
       await performCopy();
-
       heroSection.classList.add("show-marquee");
-      setTimeout(() => {
-        heroSection.classList.remove("show-marquee");
-      }, 2500);
     });
   }
 
