@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Squircle Background -->
+  <rect width="512" height="512" rx="128" fill="#121212" />
+  
+  <!-- Exact Custom 'È' Glyph Centered -->
+  <!-- Bounding box of original glyph: 339x839. Scaled by 0.50 (height = 419.5, width = 169.5) -->
+  <!-- dx = (512 - 169.5) / 2 = 171.25 -->
+  <!-- dy = (512 - 419.5) / 2 = 46.25 -->
+  <path
+    d="M82.264 275.141V486.023H311.88V553.903H82.264V771.12H339V839H0V207.261H339V275.141H82.264ZM248.6 113.134V174.679L56.048 71.5005V0L248.6 113.134Z"
+    fill="#ffffff"
+    transform="translate(171.25, 46.25) scale(0.5)"
+  />
+</svg>
