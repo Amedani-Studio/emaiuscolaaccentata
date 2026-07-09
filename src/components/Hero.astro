@@ -3,7 +3,7 @@ const charToCopy = "È";
 const creditsText = "Credits";
 const creditsUrl = "https://amedani.com";
 const creditsInfo = `emaiuscolaaccentata.org è un progetto open source 
-di Amedani Studio, sviluppato da Giulio Barkee.`;
+di <a href="${creditsUrl}" target="_blank" rel="noopener noreferrer">Amedani Studio</a>, sviluppato da Giulio Barkee.`;
 const plusSymbol = "+";
 const marqueeText = "COPIAMI";
 
@@ -80,9 +80,7 @@ const panelParagraph5 =
     <span class="credits-trigger" id="credits-trig" role="button" tabindex="0">
       {creditsText}
     </span>
-    <div class="credits-tooltip">
-      {creditsInfo}
-    </div>
+    <div class="credits-tooltip" set:html={creditsInfo} />
   </div>
 
   <button class="plus-button" aria-label={menuOptionsLabel} id="plus-btn">
@@ -310,8 +308,9 @@ const panelParagraph5 =
 
   .credits-tooltip {
     position: absolute;
-    top: calc(100% + 4px);
+    top: 100%;
     right: 0;
+    padding-top: 8px; /* Spacing that bridges the hover gap */
     color: rgba(0, 0, 0, 0.6);
     font-family:
       "Inter",
@@ -329,6 +328,18 @@ const panelParagraph5 =
     transition:
       opacity 0.3s cubic-bezier(0.25, 1, 0.25, 1),
       transform 0.3s cubic-bezier(0.25, 1, 0.25, 1);
+
+    :global(a) {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      color: inherit;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #000000;
+      }
+    }
   }
 
   @media (hover: hover) {
