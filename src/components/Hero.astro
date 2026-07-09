@@ -2,6 +2,8 @@
 const charToCopy = "È";
 const creditsText = "Credits";
 const creditsUrl = "https://amedani.com";
+const creditsInfo = `emaiuscolaaccentata.org è un progetto open source 
+di Amedani Studio, sviluppato da Giulio Barkee.`;
 const plusSymbol = "+";
 const marqueeText = "COPIAMI";
 
@@ -74,14 +76,14 @@ const panelParagraph5 =
     </div>
   </div>
 
-  <a
-    href={creditsUrl}
-    target="_blank"
-    rel="noopener noreferrer"
-    class="credits-link"
-  >
-    {creditsText}
-  </a>
+  <div class="credits-wrapper" id="credits-wrap">
+    <span class="credits-trigger" id="credits-trig" role="button" tabindex="0">
+      {creditsText}
+    </span>
+    <div class="credits-tooltip">
+      {creditsInfo}
+    </div>
+  </div>
 
   <button class="plus-button" aria-label={menuOptionsLabel} id="plus-btn">
     {plusSymbol}
@@ -156,6 +158,12 @@ const panelParagraph5 =
     padding-block: 30px;
     box-sizing: border-box;
     overflow: hidden;
+    transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &.copied-success {
+      background-color: #4ade80;
+      transition: background-color 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    }
   }
 
   .giant-e-container {
@@ -274,10 +282,15 @@ const panelParagraph5 =
     }
   }
 
-  .credits-link {
+  .credits-wrapper {
     position: absolute;
     top: 30px;
     right: 40px;
+    z-index: 50;
+    display: inline-block;
+  }
+
+  .credits-trigger {
     font-family:
       "Inter",
       system-ui,
@@ -285,13 +298,51 @@ const panelParagraph5 =
       sans-serif;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.6);
-    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
     transition: color 0.2s ease;
-    z-index: 50;
 
-    &:hover {
+    &:hover,
+    &.is-active {
       color: #000000;
     }
+  }
+
+  .credits-tooltip {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    color: rgba(0, 0, 0, 0.6);
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: right;
+    white-space: pre-line;
+    width: max-content;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+      opacity 0.3s cubic-bezier(0.25, 1, 0.25, 1),
+      transform 0.3s cubic-bezier(0.25, 1, 0.25, 1);
+  }
+
+  @media (hover: hover) {
+    .credits-wrapper:hover .credits-tooltip {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+  }
+
+  .credits-wrapper.is-open .credits-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .plus-button {
@@ -302,6 +353,11 @@ const panelParagraph5 =
     height: 78px;
     background-color: rgba(237, 237, 237, 1);
     border: none;
+    border-radius: 0;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     font-family:
       "Inter",
       system-ui,
@@ -343,9 +399,15 @@ const panelParagraph5 =
       bottom: 10px;
     }
 
-    .credits-link {
+    .credits-wrapper {
       top: 10px;
       right: 10px;
+    }
+
+    .credits-tooltip {
+      white-space: pre-line;
+      width: 180px;
+      max-width: calc(100vw - 30px);
     }
 
     .plus-button {
@@ -353,6 +415,11 @@ const panelParagraph5 =
       right: 10px;
       width: 3rem;
       height: 3rem;
+      border-radius: 0;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
       font-size: 1.5rem;
     }
   }
@@ -408,6 +475,14 @@ const panelParagraph5 =
     }
 
     .panel-toggle-btn {
+      &::before {
+        opacity: 1;
+        visibility: visible;
+        transition:
+          opacity 1.2s cubic-bezier(0.25, 1, 0.25, 1),
+          visibility 0s ease 0s;
+      }
+
       .plus-icon {
         transform: translate(-50%, -50%) rotate(45deg);
       }
@@ -651,8 +726,11 @@ const panelParagraph5 =
     height: 84px;
     background-color: rgba(224, 224, 224, 1);
     border: none;
-    border-top: 6px solid #ffffff;
-    border-left: 6px solid #ffffff;
+    border-radius: 0;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     cursor: pointer;
     z-index: 25;
     padding: 0;
@@ -661,6 +739,25 @@ const panelParagraph5 =
     justify-content: center;
     box-sizing: border-box;
     transition: background-color 0.2s ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      right: -1px;
+      bottom: -1px;
+      border-top: 7px solid #ffffff;
+      border-left: 7px solid #ffffff;
+      pointer-events: none;
+
+      // Hide by default when collapsed, transition to visible when expanded
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity 1.2s cubic-bezier(0.25, 1, 0.25, 1),
+        visibility 0s ease 1.2s;
+    }
 
     &:hover {
       background-color: #e5e5e5;
@@ -711,8 +808,21 @@ const panelParagraph5 =
     .panel-toggle-btn {
       width: calc(3rem + 4px);
       height: calc(3rem + 4px);
-      border-top: 4px solid #ffffff;
-      border-left: 4px solid #ffffff;
+      border: none;
+      border-radius: 0;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+
+      &::before {
+        top: -4px;
+        left: -4px;
+        right: -1px;
+        bottom: -1px;
+        border-top: 5px solid #ffffff;
+        border-left: 5px solid #ffffff;
+      }
 
       .plus-icon {
         font-size: 1.5rem;
@@ -722,6 +832,203 @@ const panelParagraph5 =
 </style>
 
 <script>
+  // Confetti Particle System
+  class ConfettiParticle {
+    x: number;
+    y: number;
+    size: number;
+    color: string;
+    vx: number;
+    vy: number;
+    rotation: number;
+    rotationSpeed: number;
+    opacity: number;
+    decay: number;
+    width: number;
+    height: number;
+    shape: "circle" | "square" | "triangle";
+
+    constructor(x: number, y: number, isCannon = false) {
+      this.x = x;
+      this.y = y;
+      this.size = Math.random() * 8 + 6;
+
+      const colors = [
+        "#10b981",
+        "#f59e0b",
+        "#ec4899",
+        "#3b82f6",
+        "#8b5cf6",
+        "#84cc16",
+      ];
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+
+      if (isCannon) {
+        this.vx = 0;
+        this.vy = 0;
+      } else {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 6 + 2;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed - 2;
+      }
+
+      this.rotation = Math.random() * 360;
+      this.rotationSpeed = (Math.random() - 0.5) * 8;
+      this.opacity = 1;
+      this.decay = Math.random() * 0.01 + 0.008;
+
+      this.width = this.size;
+      this.height = this.size * (Math.random() * 0.5 + 0.5);
+
+      const shapes: ("circle" | "square" | "triangle")[] = [
+        "circle",
+        "square",
+        "triangle",
+      ];
+      this.shape = shapes[Math.floor(Math.random() * shapes.length)];
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.vy += 0.15; // gravity
+      this.vx *= 0.98; // air resistance
+      this.vy *= 0.98;
+      this.rotation += this.rotationSpeed;
+      this.opacity -= this.decay;
+    }
+
+    draw(ctx: CanvasRenderingContext2D) {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate((this.rotation * Math.PI) / 180);
+      ctx.globalAlpha = this.opacity;
+      ctx.fillStyle = this.color;
+
+      const w = this.width * Math.abs(Math.sin(this.rotation * 0.05));
+      const h = this.height;
+
+      ctx.beginPath();
+      if (this.shape === "circle") {
+        ctx.arc(0, 0, w / 2, 0, Math.PI * 2);
+      } else if (this.shape === "triangle") {
+        ctx.moveTo(0, -h / 2);
+        ctx.lineTo(w / 2, h / 2);
+        ctx.lineTo(-w / 2, h / 2);
+        ctx.closePath();
+      } else {
+        ctx.rect(-w / 2, -h / 2, w, h);
+      }
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  let particles: ConfettiParticle[] = [];
+  let animationId: number | null = null;
+  let canvas: HTMLCanvasElement | null = null;
+  let ctx: CanvasRenderingContext2D | null = null;
+
+  function initCanvas() {
+    canvas = document.getElementById("confetti-canvas") as HTMLCanvasElement;
+    if (!canvas) {
+      canvas = document.createElement("canvas");
+      canvas.id = "confetti-canvas";
+      canvas.style.position = "absolute";
+      canvas.style.top = "0";
+      canvas.style.left = "0";
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+      canvas.style.pointerEvents = "none";
+      canvas.style.zIndex = "99";
+      const hero = document.getElementById("hero-section");
+      if (hero) {
+        hero.appendChild(canvas);
+      }
+    }
+    ctx = canvas.getContext("2d");
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+  }
+
+  function resizeCanvas() {
+    if (canvas) {
+      canvas.width = canvas.parentElement?.clientWidth || window.innerWidth;
+      canvas.height = canvas.parentElement?.clientHeight || window.innerHeight;
+    }
+  }
+
+  function animate() {
+    if (!ctx || !canvas) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.update();
+      p.draw(ctx);
+      if (p.opacity <= 0) {
+        particles.splice(i, 1);
+      }
+    }
+
+    if (particles.length > 0) {
+      animationId = requestAnimationFrame(animate);
+    } else {
+      animationId = null;
+    }
+  }
+
+  function fireConfetti(clientX?: number, clientY?: number) {
+    if (!canvas) {
+      initCanvas();
+    }
+    if (!canvas) return;
+
+    const width = canvas.width;
+    const height = canvas.height;
+
+    // Local click burst
+    if (clientX !== undefined && clientY !== undefined) {
+      const rect = canvas.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      for (let i = 0; i < 45; i++) {
+        particles.push(new ConfettiParticle(x, y));
+      }
+    } else {
+      for (let i = 0; i < 45; i++) {
+        particles.push(new ConfettiParticle(width / 2, height / 2));
+      }
+    }
+
+    // Left cannon
+    for (let i = 0; i < 40; i++) {
+      const p = new ConfettiParticle(0, height, true);
+      const angle = -Math.random() * 40 - 20;
+      const rad = (angle * Math.PI) / 180;
+      const speed = Math.random() * 12 + 8;
+      p.vx = Math.cos(rad) * speed;
+      p.vy = Math.sin(rad) * speed;
+      particles.push(p);
+    }
+
+    // Right cannon
+    for (let i = 0; i < 40; i++) {
+      const p = new ConfettiParticle(width, height, true);
+      const angle = -Math.random() * 40 - 100;
+      const rad = (angle * Math.PI) / 180;
+      const speed = Math.random() * 12 + 8;
+      p.vx = Math.cos(rad) * speed;
+      p.vy = Math.sin(rad) * speed;
+      particles.push(p);
+    }
+
+    if (!animationId) {
+      animate();
+    }
+  }
+
   const copyBtn = document.getElementById("copy-e");
   const heroSection = document.getElementById("hero-section");
   const marqueeContainer = document.getElementById("marquee-container");
@@ -735,17 +1042,34 @@ const panelParagraph5 =
     }
   };
 
+  let successTimeoutId: number | null = null;
+  const triggerSuccess = (e: MouseEvent) => {
+    if (heroSection) {
+      heroSection.classList.add("copied-success");
+      if (successTimeoutId) {
+        clearTimeout(successTimeoutId);
+      }
+      successTimeoutId = window.setTimeout(() => {
+        heroSection.classList.remove("copied-success");
+        successTimeoutId = null;
+      }, 2000);
+    }
+    fireConfetti(e.clientX, e.clientY);
+  };
+
   if (copyBtn && heroSection) {
-    copyBtn.addEventListener("click", async () => {
+    copyBtn.addEventListener("click", async (e) => {
       await performCopy();
       heroSection.classList.add("show-marquee");
+      triggerSuccess(e);
     });
   }
 
   if (marqueeContainer && heroSection) {
-    marqueeContainer.addEventListener("click", async () => {
+    marqueeContainer.addEventListener("click", async (e) => {
       await performCopy();
       heroSection.classList.add("show-marquee");
+      triggerSuccess(e);
     });
   }
 
@@ -770,6 +1094,7 @@ const panelParagraph5 =
             (label as HTMLElement).style.color = "";
           }, 1500);
         }
+        fireConfetti(e.clientX, e.clientY);
       } catch (err) {
         console.error("Errore durante la copia negli appunti: ", err);
       }
@@ -810,6 +1135,17 @@ const panelParagraph5 =
     });
   }
 
+  const creditsWrap = document.getElementById("credits-wrap");
+  const creditsTrig = document.getElementById("credits-trig");
+
+  if (creditsTrig && creditsWrap) {
+    creditsTrig.addEventListener("click", (e) => {
+      e.stopPropagation();
+      creditsWrap.classList.toggle("is-open");
+      creditsTrig.classList.toggle("is-active");
+    });
+  }
+
   document.addEventListener("click", (e) => {
     if (
       plusPanel &&
@@ -817,6 +1153,12 @@ const panelParagraph5 =
       !plusPanel.contains(e.target as Node)
     ) {
       plusPanel.classList.remove("is-expanded");
+    }
+    if (creditsWrap && !creditsWrap.contains(e.target as Node)) {
+      creditsWrap.classList.remove("is-open");
+      if (creditsTrig) {
+        creditsTrig.classList.remove("is-active");
+      }
     }
   });
 </script>
